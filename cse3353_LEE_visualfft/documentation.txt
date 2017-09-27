@@ -1,0 +1,41 @@
+a) The Blue print
+    Initial Idea: Algorithm to determine good vocal performance utilizing FFT
+    Changed Idea: Real Time Spectrum Analyzer using FFT
+
+    I wish to create a program that will use FFT algorithm to visualize audio signals in both Amplitude vs Time Domain and PSD vs Frequency Domain in Real Time.
+
+b) The Implementation
+    Design & Algorithm: The program will have a recorder and visualizer.
+    Recorder will use pyaudio and soundcard to process sound input as data to be used for fast fourier transform.
+    The Visualizer will utilize the pyqtgraph to plot the signals in time domain and frequency domain simultaneously.
+    For fast and optimal processing of the data, I will use numpy and scipy library for Fourier Transforms.
+
+    Obstacles: Difficulty with GUI and pyaudio, and concept
+    recorder.py which consists of primarily functions that will deal with inputs which are hardware, was a really hard part. The Pyaudio doc was a great help.
+    For GUI, I've tried using matplotlib but found it had some speed issues as to real time. Then from a Japanese blog I found usage of pyqtgraph, and was able to implement a full GUI.
+    One of the main problems I had with original project idea was that I could not differentiate between vocal input and musical input.
+    For instance, if I am playing a music to sing to, there was no way for me to separately express the vocal input and the karaoke playing behind.
+    To do this, I would've needed to built a program that will read in a music file and give its spectrum analysis then compare it to the real time vocal input.
+    Lastly, the concept of Fourier Transformation, going back to Fourier Series, Heat Equation and even as far as divergence was a lot to process.
+    Unlike other algorithms I encountered, the FFT had a long story and required some mathematical background to understand and implement.
+    While the Cooley-Tukey algorithm was widely explained and demonstrated, grasping the mathematics behind functionality of Fourier Transform took a lot of time and reading.
+
+c) Final Results and Conclusion
+
+    I was unsuccessful in implementing the original program of determining good vocal input through analysis of pitch according to music theory.
+    However through the process I've learnt and reviewed a great deal of mathematics and concept of complexity. (When I compared bit flipping in FFT and DFT, the nlog(n) really kicked in and as the size of n grew out to 2^10, the result of FFT was almost 200 times faster!)
+
+d) Possible Improvements
+    Given more time, I would go into implementing a program that will get a full music file (.mp3) and analyze the spectrum of the input file.
+    Then, I will divide up the music file into multiple parts based on the same chord (this will require analysis that will go through the frequency of music file first).
+    From the divided up music file, I will assign value to each section (chord). This will provide possible pitch values. (ie. if we have C chord, let the pitch value range from C~G)
+    Then I will record and save the vocal input and record its pitch based on the frequency.
+    Lastly, comparing the two saved music files, I will compare the chord input at given time period with the input pitch.
+    Based on the match of pitch and Chord, the program will provide score.
+
+e) Five Bullet Points
+    - Takes in Audio input using the sound card and pyaudio Module
+    - Create Array of Float values based on input to use with numpy FFT module
+    - Utilizes numpy and scipy modules to optimally compute fourier transform
+    - Supports full and Real Time GUI for visualization of FFT
+    - Gives both representation of Amplitude vs Time Domain and PSD vs Frequency Domain
